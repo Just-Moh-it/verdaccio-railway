@@ -5,7 +5,7 @@ USER root
 
 ENV NODE_ENV=production
 
-RUN npm && npm i verdaccio-memory
+RUN npm && npm install verdaccio-memory
 
 COPY ./config.yaml /verdaccio/conf
 

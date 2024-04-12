@@ -1,10 +1,11 @@
+FROM oven/bun:1
 FROM verdaccio/verdaccio:5
 
 USER root
 
 ENV NODE_ENV=production
 
-RUN yarn && yarn add verdaccio-memory
+RUN bun && bun add verdaccio-memory
 
 COPY ./config.yaml /verdaccio/conf
 

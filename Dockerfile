@@ -1,14 +1,8 @@
-FROM node:20
-FROM verdaccio/verdaccio:5
+# Use the official Verdaccio image as a base image
+FROM verdaccio/verdaccio
 
-USER root
+# Expose the port Verdaccio runs on
+EXPOSE 4873
 
-ENV NODE_ENV=production
-
-RUN npm && npm install verdaccio-memory
-
-COPY ./config.yaml /verdaccio/conf
-
-USER verdaccio
-# Important step, $PORT is provided by heroku while verdaccio uses $VERDACCIO_PORT, we need to override it
-CMD node -r ./.pnp.js $VERDACCIO_APPDIR/bin/verdaccio --config /verdaccio/conf/config.yaml --listen $VERDACCIO_PROTOCOL://0.0.0.0:$PORT
+# Start the Verdaccio application
+CMD ["verdaccio"]
